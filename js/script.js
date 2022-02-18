@@ -9,7 +9,6 @@ const renderStorageData = function() {
   if(JSON.parse(localStorage.getItem("toDoData")).length > 0) {
     toDoData = JSON.parse(localStorage.getItem("toDoData"))
     render()
-      console.log(JSON.parse(localStorage.getItem("toDoData")).length)
   }
 }
 
@@ -36,6 +35,11 @@ const render = function () {
 
     li.querySelector('.todo-complete').addEventListener('click', function() {
       item.completed = !item.completed
+
+			let storageData = JSON.parse(localStorage.getItem("toDoData"))
+			storageData[index].completed = item.completed
+			localStorage.setItem("toDoData", JSON.stringify(storageData))
+
       render()
     })
 
